@@ -12,12 +12,14 @@ const Auth = () => {
 const loacation = useLocation();
 
 const next = loacation.search.split("next=")[1];
+const validNext = next?.startsWith("/") ? next : "/";
+
 const navigate = useNavigate();
 
 
   useEffect(()=>{
-    if(auth.isAuthenticated) navigate(next)
-  },[auth.isAuthenticated, next])
+    if(auth.isAuthenticated) navigate(validNext)
+  },[auth.isAuthenticated, validNext])
   return (
     <main className="bg-[url('/images/bg-main.svg')] bg-cover min-h-screen flex items-center justify-center">
       <div className="gradient-border shadow-lg">
